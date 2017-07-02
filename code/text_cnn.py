@@ -35,18 +35,54 @@ class TextCNN(object):
             self.embedded_tokens_expanded = tf.expand_dims(self.embedded_tokens, -1)
 
         # TODO: Create a convolution + maxpool layer for each filter size
-        # For the convolution, use tf.nn.conv2
-        # For the max-pooling, use tf.nn.max_pool
-            # the filter should be a 4-D tensor of shape [filter_height, filter_width, in_channels, out_channels]
-            # filter_height represents how many words the filter cover
-            # filter_width is the same as the embedding size
-            # in_channels is 1, and out_channels is the num_filters
-            # for NLP tasks the stride is typically [1, 1, 1, 1] and in_channels=1
+        # Since we have several filters, we need several convolutions, collect
+        # them an combine them afterwards
+           
 
+        # Create a convolution + maxpool layer for each filter size
+        # Store filter outputs in pooled_outputs
+        pooled_outputs = []
+        for _, filter_size in enumerate(filter_sizes):
+            with tf.name_scope("conv-maxpool-%s" % filter_size):
+              # For the convolution, use tf.nn.conv2
+              # For the max-pooling, use tf.nn.max_pool
+              # the filter should be a 4-D tensor of shape [filter_height, filter_width, in_channels, out_channels]
+              # filter_height represents how many words the filter cover
+              # filter_width is the same as the embedding size
+              filter_shape = [...]
+              W = tf.Variable(tf.truncated_normal(filter_shape, stddev=0.1), name="W")
+              b = tf.Variable(tf.constant(0.1, shape=[num_filters]), name="b")
+              
+              # TODO: Apply convolutions
+              # For NLP tasks the stride is typically [1, 1, 1, 1] and in_channels=1
+              conv = ...
+              
+              # TODO: Use a relu non-linearity before max-pooling
+              
+              # TODO: Maxpooling over the outputs
+              pooled = ...
+              
+              # Append 
+              pooled_outputs.append(pooled)
+                
+                
         # TODO: Combine all the pooled features
-
-        # TODO: (Optional) Add dropout and L2 regularization
-
+        self.h_pool_flat = ...
+        
+        # TODO: Add dropout 
+        with tf.name_scope("dropout"):
+          self.h_drop = ...
+                   
+        # Final (unnormalized) scores and predictions (optional: add L2 regularization of soft-max weights)
+        with tf.name_scope("output"):
+            self.scores = ...
+            self.predictions = ...
+            
+            
         # TODO: Define Mean cross-entropy loss using  tf.nn.sparse_softmax_cross_entropy_with_logits
-
+        with tf.name_scope("loss"):
+          self.loss = ...
+            
         # TODO: Define Accuracy (hint: use  tf.equal and tf.argmax)
+        with tf.name_scope("accuracy"):
+            self.accuracy = ...

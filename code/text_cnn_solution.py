@@ -36,7 +36,7 @@ class TextCNN(object):
 
         # Create a convolution + maxpool layer for each filter size
         pooled_outputs = []
-        for i, filter_size in enumerate(filter_sizes):
+        for _, filter_size in enumerate(filter_sizes):
             with tf.name_scope("conv-maxpool-%s" % filter_size):
                 # Convolution Layer
                 # the filter should be a 4-D tensor of shape [filter_height, filter_width, in_channels, out_channels]
@@ -68,7 +68,6 @@ class TextCNN(object):
         # Combine all the pooled features
         num_filters_total = num_filters * len(filter_sizes)
         self.h_pool = tf.concat(pooled_outputs, axis=3)
-        print(self.h_pool.get_shape())
         self.h_pool_flat = tf.reshape(self.h_pool, [-1, num_filters_total])
 
         # Add dropout
