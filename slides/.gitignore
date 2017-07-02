@@ -1,0 +1,14 @@
+# No pdfs in git
+#*.pdf
+# LaTeX temprary files
+*.aux
+*.synctex.gz
+*.log
+*.bbl
+*.blg
+*.dvi
+*.out
+*.nav
+*.snm
+*.vrb
+*.toc
