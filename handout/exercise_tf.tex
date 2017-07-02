@@ -38,11 +38,7 @@ Our model is shown in Figure~\ref{fig:cnn}. The first layer embeds words into lo
 \label{fig:cnn}
 \end{figure}
 
-\paragraph{Getting started} To get you up to speed quickly, we provide you with some starter code available at
-\begin{center}
-	\url{http://TODO}
-\end{center}
-This code loads the data, feeds it into a skeleton tensorflow model and performs a training loop.  To be precise:
+\paragraph{Getting started} To get you up to speed quickly, we provide you with a code skeleton located in the \texttt{code} folder of the repository. This code loads the data, feeds it into a skeleton tensorflow model and performs a training loop.  To be precise:
 \begin{itemize}
 \item The code loads the data, shuffles it and splits it into a training and a (1000 tweets) dev set.
 \item Then we pad the tweets with a $<$PAD$>$ token to the length of the longest tweet. This allows us to use mini-batches since all the tweets will now be of the same size.
