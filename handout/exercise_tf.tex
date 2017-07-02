@@ -71,6 +71,20 @@ The first (embedding) layer of the CNN receives as input a batch of tweets in th
 
 As shown in the slides, RNNs can solve the same sentiment classification task by iteratively building up a summary of the sentence. With your CNN implementation at hand, it's actually only a few lines of codes to implement the RNN.
 
+\paragraph{The Model}
+A recursive neural network, recursively computes a sequence of hidden states $h_1,h_2\dots\in\mathbb R^d$. Often this computation also depends on some input $x_1,x_2,\dots\in\mathbb R^{d'}$ and we can write
+\begin{align*}
+	f_\theta&: \mathbb R^d \times \mathbb R^{d'} \rightarrow \mathbb R^d\\
+	h_t&=f_\theta(h_{t-1},x_t)
+\end{align*}
+where $\theta$ is the parametrization of the network that we want to learn. In this case we can say that an RNN maps a sequence of inputs to a sequence of outputs while maintaining a state $h_t$. In our case the inputs will be words of a sentence and the state will be our sentence summary. At the end of the sentence, this summary should provide a fixed-size representation of the sentence that we can use to predict the sentiment. Just like the CNN max-pooling representation. Figure \ref{fig:rnnArchitecture} shows the general RNN architecture. 
+\begin{figure}[ht]
+	\includegraphics[scale=0.6]{images/rnn.pdf}
+	\caption{Abstract RNN architecture}
+	\label{fig:rnnArchitecture}
+\end{figure}
+
+
 \paragraph{Your task}
 Create a new class \texttt{TextRNN} by copying the content of \texttt{TextCNN} from \texttt{text\_cnn\_solution.py}. Remove all the code between the \texttt{embedding} and the \texttt{dropout} scope. In between these two, we will define a new vector sentence-representation, now using an RNN instead of a CNN. Change the name of this representation from \texttt{self.h\_pool\_flat} to something more appropriate and adapt the size of the fully connected layer after the dropout accordingly. Also, you might want to change the constructor arguments of \texttt{TextRNN} to reflect the hyperparameters of the RNN.
 
