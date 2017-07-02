@@ -49,7 +49,13 @@ This code loads the data, feeds it into a skeleton tensorflow model and performs
 \item We convert each word from every tweet to the corresponding index of the word in the vocabulary. Essentially, each tweet becomes a vector of integers.
 \item 
 The first (embedding) layer of the CNN receives as input a batch of tweets in this format, and replaces each index with a word embedding for the particular word.
-\item These word embeddings can be randomly initialized, but typically for NLP tasks it is better to set their initial value to some pretrained word embeddings. For this you can either use the 300-dimensional word2vec embeddings or the 50-dimensional GloVe embeddings (depending on your RAM limitations). You can download the word embeddings you would like to use from the Kaggle website and place them in the word-embeddings folder. In the sample scrip we have included a code that initializes the embedding matrix from the CNN. Make sure you have gensim installed (\url{https://radimrehurek.com/gensim/install.htm}).
+\item These word embeddings can be randomly initialized, but typically for NLP tasks it is better to set their initial value to some pretrained word embeddings. For this you can either use the 300-dimensional word2vec embeddings or the 50-dimensional GloVe embeddings (depending on your RAM limitations). You can download the word embeddings you would like to use from the Kaggle website and place them in the word-embeddings folder. In the sample scrip we have included a code that initializes the embedding matrix from the CNN. Make sure you have gensim installed\footnote{\texttt{pip3 install --user gensim} should be sufficient. Also see \url{https://radimrehurek.com/gensim/install.htm}}.
+\item \textbf{Important}: In order to run the code, you need to provide the following program arguments 	
+\begin{verbatim}
+--training_file_pos /path/to../train_pos.txt
+--training_file_neg /path/to../train_neg.txt
+--embedding_file /path/to../glove_model.txt
+\end{verbatim}
 \end{itemize}
 \paragraph{Your task}
 \begin{enumerate}
