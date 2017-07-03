@@ -117,26 +117,29 @@ florian.schmidt@inf.ethz.ch, yannic.kilcher@inf.ethz.ch\\
 	\frametitle{The graph concept in TF}
 		
 	
+	\begin{block}{Nodes}
 	\begin{itemize}		
 		\item Variables
+		\item Tensors
 		\item (Input) Placeholders
 		\begin{verbatim}
 			x = tf.placeholder(tf.float32, [200,10], "input")
 		\end{verbatim}
-		\item Operations (e.g.\ for matrices \texttt{A,B,C})
+	\end{itemize}
+	\end{block}
+	\begin{block}{Operations (e.g.\ for matrices \texttt{A,B,C})}
 		\begin{verbatim}
 			C = A - B
 			C = tf.matmul(A,B)
 			C = tf.nn.relu(A)
 		\end{verbatim}
-		Common operations include
+		Other common operations include
 		
 		\begin{itemize}
-			
 			\item\footnotesize Pointwise: \texttt{tf.mul, tf.add, tf.sigmoid, tf.tanh, tf.nn.relu}
 			\item\footnotesize Summing and averaging: \texttt{tf.reduce\_sum, tf.reduce\_mean}		
 		\end{itemize}		
-	\end{itemize}
+	\end{block}
 \end{frame}
 
 
